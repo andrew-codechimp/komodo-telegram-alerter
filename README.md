@@ -44,7 +44,7 @@ services:
 
 To customize notification messages:
 
-1. Create a `custom-templates` directory with `templates.json` file:
+1. Create a `config` directory with `templates.json` file:
 
 ```json
 {
