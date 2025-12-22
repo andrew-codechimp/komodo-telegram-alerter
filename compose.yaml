@@ -1,8 +1,11 @@
----
 services:
   komodo-telegram-alerter:
-    image: deniom3/komodo-telegram-alerter:latest
     container_name: komodo-telegram-alerter
-    restart: unless-stopped
+    image: ghcr.io/andrew-codechimp/komodo-telegram-alerter:latest
+    environment:
+      - TZ='Europe/London'    
     ports:
-      - '3000:3000'
+      - '9121:3000'
+    volumes:
+      - /containers/komodo-telegram-alerter/config:/app/config:ro
+    restart: unless-stopped

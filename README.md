@@ -1,10 +1,9 @@
 [![Latest Release][version-image]][version-url]
-[![Docker Pulls][dockerhub-image]][dockerhub-url]
 [![Build Status][gh-actions-image]][gh-actions-url]
 
 # Komodo Telegram Alerter
 
-[Русская версия](README.ru.md) | [English version](README.en.md)
+Just my own fork with a few tweaks, unsupported.
 
 A lightweight Telegram notification service for [Komodo](https://komo.do) monitoring system.
 
@@ -33,12 +32,12 @@ Data: {
 services:
   komodo-telegram-alerter:
     container_name: komodo-telegram-alerter
-    image: deniom3/komodo-telegram-alerter:latest
+    image: ghcr.io/andrew-codechimp/komodo-telegram-alerter:latest
     restart: unless-stopped
     ports:
-      - '3000:3000'
+      - "9121:3000"
     volumes:
-      - ./custom-templates:/app/templates:ro
+      - /containers/komodo-telegram-alerter/config:/app/config:ro
 ```
 
 ### Custom Message Templates
@@ -46,6 +45,7 @@ services:
 To customize notification messages:
 
 1. Create a `custom-templates` directory with `templates.json` file:
+
 ```json
 {
   "StackAutoUpdated": {
@@ -55,6 +55,7 @@ To customize notification messages:
   }
 }
 ```
+
 2. Mount the directory as shown in compose example
 
 ### Supported Placeholders
@@ -67,6 +68,7 @@ All fields from alert data object, including nested properties:
 - Array elements by index: `{images.0}`, `{trace.1}`
 
 Example template:
+
 ```json
 {
   "ServerUnreachable": {
@@ -79,25 +81,30 @@ Example template:
 ### Configure Komodo
 
 In Komodo, add Custom Alerter with URL:
-`http://<alerter-ip>:3000/alert?token=<TELEGRAM_TOKEN>&chat_id=<TELEGRAM_CHAT_ID>&message_thread_id=<TELEGRAM_THREADS_ID>`
+`http://<alerter-ip>:9121/alert?token=<TELEGRAM_TOKEN>&chat_id=<TELEGRAM_CHAT_ID>&message_thread_id=<TELEGRAM_THREADS_ID>`
 
 Or use Komodo variables:
-`http://<alerter-ip>:3000/alert?token=[[TELEGRAM_TOKEN]]&chat_id=[[TELEGRAM_CHAT_ID]]&message_thread_id=[[TELEGRAM_THREADS_ID]]`
+`http://<alerter-ip>:9121/alert?token=[[TELEGRAM_TOKEN]]&chat_id=[[TELEGRAM_CHAT_ID]]&message_thread_id=[[TELEGRAM_THREADS_ID]]`
 
 ## Telegram Credentials
 
 ### Bot Token
+
 1. Message [@BotFather](https://t.me/botfather)
 2. Create new bot with `/newbot`
 3. Get your bot token
 
 ### Chat ID
+
 1. Add bot to desired chat/channel
 2. Send test message
 3. Visit: `https://api.telegram.org/bot<YOUR_TOKEN>/getUpdates`
 4. Find `chat.id` in response
+
 ### Message Threads (Supergroups)
+
 For thread notifications:
+
 1. Send message to thread
 2. Get `message_thread_id` from getUpdates response
 3. Add to URL: `&message_thread_id=<THREAD_ID>`
@@ -110,6 +117,7 @@ The service supports detailed JSON logging. Configure using environment variable
 - `MESSAGE_LOG` - enable request/response logging (true/false). Default: false
 
 Example log:
+
 ```json
 {
   "timestamp": "2025-11-17T11:13:34.548Z",
@@ -125,18 +133,14 @@ Example log:
 ```
 
 To enable message logging:
+
 ```yaml
 environment:
   - MESSAGE_LOG=true
   - LOG_LEVEL=debug
 ```
 
-
-[version-image]: https://img.shields.io/github/v/release/Deniom3/komodo-telegram-alerter?style=for-the-badge
-[version-url]: https://github.com/Deniom3/komodo-telegram-alerter/releases
-
-[gh-actions-image]: https://img.shields.io/github/actions/workflow/status/Deniom3/komodo-telegram-alerter/docker-publish.yml?style=for-the-badge
-[gh-actions-url]: https://github.com/Deniom3/komodo-telegram-alerter/actions
-
-[dockerhub-image]: https://img.shields.io/docker/pulls/deniom3/komodo-telegram-alerter?label=DockerHub%20Pulls&style=for-the-badge
-[dockerhub-url]: https://hub.docker.com/r/deniom3/komodo-telegram-alerter
+[version-image]: https://img.shields.io/github/v/release/andrew-codechimp/komodo-telegram-alerter?style=for-the-badge
+[version-url]: https://github.com/andrew-codechimp/komodo-telegram-alerter/releases
+[gh-actions-image]: https://img.shields.io/github/actions/workflow/status/andrew-codechimp/komodo-telegram-alerter/docker-publish.yml?style=for-the-badge
+[gh-actions-url]: https://github.com/andrew-codechimp/komodo-telegram-alerter/actions

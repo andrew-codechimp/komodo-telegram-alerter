@@ -1,31 +1,15 @@
 {
+  "StackImageUpdateAvailable": {
+    "OK": "ℹ️ New image {images} available for stack {name} on server {server_name}"
+  },
   "StackAutoUpdated": {
-    "OK": "✅ На сервере {server_name} обновлен образ {images} в стеке {name}",
-    "INFO": "ℹ️ На сервере {server_name} выполняется обновление образа {images} в стеке {name}",
-    "ERROR": "❌ Ошибка обновления образа {images} на сервере {server_name}"
-  },
-  "ServerCpu": {
-    "WARNING": "⚠️ Высокая загрузка CPU на сервере {name} ({percentage}%)",
-    "OK": "✅ Нормальная загрузка CPU на сервере {name} ({percentage}%)",
-    "CRITICAL": "❌ Критическая загрузка CPU на сервере {name} ({percentage}%)"
-  },
-  "StackStateChange": {
-    "WARNING": "⚠️ Стек {name} на сервере {server_name} перешёл из состояния {from} в {to}",
-    "OK": "✅ Стек {name} на сервере {server_name} работает нормально (состояние {to})"
+    "OK": "✅ Stack {name} on server {server_name} updated image {images}",
+    "INFO": "ℹ️ Updating image {images} stack {name} on server {server_name}",
+    "ERROR": "🚨 Error updating image {images} stack {name} on server {server_name}"
   },
   "ServerUnreachable": {
-    "CRITICAL": "🔴 Сервер {name} недоступен: соединение отклонено ({error})",
-    "OK": "🟢 Сервер {name} снова доступен"
-  },
-  "ServerDisk": {
-    "WARNING": "⚠️ Высокое заполнение диска на сервере {name} занято {used_gb}GB из {total_gb}GB",
-    "OK": "🟢 Нормальный уровень заполнения диска на сервере {name} занято {used_gb}GB из {total_gb}GB",
-    "CRITICAL": "🔴 Критически мало места на сервере {name} занято {used_gb}GB из {total_gb}GB"
-  },
-  "ServerMem": {
-    "WARNING": "⚠️ На сервере {name} большщая нагрузка RAM использовано {used_gb}GB из {total_gb}GB",
-    "CRITICAL": "🔴 Критическая нагрузка RAM на сервере {name} использовано {used_gb}GB из {total_gb}GB",
-    "OK": "🟢 Нормальная нагрузка RAM на сервере {name}"
+    "CRITICAL": "🔴 Server {name} unreachable: {error}",
+    "OK": "🟢 Server {name} back online"
   },
   "Custom": {
     "OK": "✅ {message}",

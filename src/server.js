@@ -93,6 +93,7 @@ app.post('/alert', async (req, res) => {
     const telegramPayload = {
       chat_id,
       text: message,
+      link_preview_options: {is_disabled: true},
       parse_mode: 'Markdown',
       ...(message_thread_id && { message_thread_id })
     };
