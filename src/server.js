@@ -92,8 +92,10 @@ app.post('/alert', async (req, res) => {
     console.log(JSON.stringify(logData));
   } else {
     message = messageResult.message;
-    // Template's disable_notification overrides query string parameter
-    finalDisableNotification = messageResult.disable_notification;
+    // Template's disable_notification overrides query string parameter if explicitly set
+    if (messageResult.disable_notification !== undefined) {
+      finalDisableNotification = messageResult.disable_notification;
+    }
   }
 
   // https://core.telegram.org/bots/api#sendmessage

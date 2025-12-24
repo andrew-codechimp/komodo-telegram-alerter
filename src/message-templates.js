@@ -65,14 +65,14 @@ export function getMessage(type, status, data) {
     if (typeof templateConfig === 'string') {
       return {
         message: formatTemplate(templateConfig, data),
-        disable_notification: false
+        disable_notification: undefined
       };
     }
     
     // New object format with template and disable_notification
     return {
       message: formatTemplate(templateConfig.template, data),
-      disable_notification: templateConfig.disable_notification ?? false
+      disable_notification: templateConfig.disable_notification
     };
   } catch (err) {
     console.error(`[ERROR] Failed to generate message: ${err.message}`);
