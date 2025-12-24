@@ -1,11 +1,11 @@
 {
   "StackImageUpdateAvailable": {
-    "OK": "ℹ️ New image {images} available for stack {name} on server {server_name}"
+    "OK": "ℹ️ New image {image} available for stack {name} on server {server_name}"
   },
   "StackAutoUpdated": {
-    "OK": "✅ Stack {name} on server {server_name} updated image {images}",
-    "INFO": "ℹ️ Updating image {images} stack {name} on server {server_name}",
-    "ERROR": "🚨 Error updating image {images} stack {name} on server {server_name}"
+    "OK": "✅ Stack {name} on server {server_name} updated images {images}",
+    "INFO": "ℹ️ Updating images {images} stack {name} on server {server_name}",
+    "ERROR": "🚨 Error updating images {images} stack {name} on server {server_name}"
   },
   "ServerUnreachable": {
     "CRITICAL": "🔴 Server {name} unreachable: {error}",

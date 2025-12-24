@@ -30,7 +30,8 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 app.post('/alert', async (req, res) => {
-  const { token, chat_id, message_thread_id } = req.query;
+  const { token, chat_id, message_thread_id, disable_notification } = req.query;
+  const disableNotification = disable_notification === 'true';
   if (!token || !chat_id) {
     const logData = {
       timestamp: new Date().toISOString(),
@@ -95,6 +96,7 @@ app.post('/alert', async (req, res) => {
       text: message,
       link_preview_options: {is_disabled: true},
       parse_mode: 'Markdown',
+      disable_notification: disableNotification,
       ...(message_thread_id && { message_thread_id })
     };
     

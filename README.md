@@ -81,10 +81,10 @@ Example template:
 ### Configure Komodo
 
 In Komodo, add Custom Alerter with URL:
-`http://<alerter-ip>:9121/alert?token=<TELEGRAM_TOKEN>&chat_id=<TELEGRAM_CHAT_ID>&message_thread_id=<TELEGRAM_THREADS_ID>`
+`http://<alerter-ip>:9121/alert?token=<TELEGRAM_TOKEN>&chat_id=<TELEGRAM_CHAT_ID>&message_thread_id=<TELEGRAM_THREADS_ID>&disable_notification=true`
 
 Or use Komodo variables:
-`http://<alerter-ip>:9121/alert?token=[[TELEGRAM_TOKEN]]&chat_id=[[TELEGRAM_CHAT_ID]]&message_thread_id=[[TELEGRAM_THREADS_ID]]`
+`http://<alerter-ip>:9121/alert?token=[[TELEGRAM_TOKEN]]&chat_id=[[TELEGRAM_CHAT_ID]]&message_thread_id=[[TELEGRAM_THREADS_ID]]&disable_notification=true`
 
 ## Telegram Credentials
 
