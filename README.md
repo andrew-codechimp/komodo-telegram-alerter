@@ -62,7 +62,9 @@ To customize notification messages:
 }
 ```
 
-If a simple status template is used it will use the default to the disable_notification query string parameter (default false)
+If a simple status template is used it will default to the disable_notification query string parameter (default false)
+
+If disable_notification is specified within the template it will override the query string parameter
 
 2. Mount the directory as shown in compose example
 
