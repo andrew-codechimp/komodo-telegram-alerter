@@ -73,9 +73,11 @@ app.post('/alert', async (req, res) => {
     'OK': '✅'
   }[level.toUpperCase()] || 'ℹ️';
 
-  let message = getMessage(type, level, alertInfoData);
+  const messageResult = getMessage(type, level, alertInfoData);
+  let message;
+  let finalDisableNotification = disableNotification;
   
-  if (!message) {
+  if (!messageResult) {
     // Fallback to old format if no template found
     message = `${levelEmoji} ${level} - ${type}\n` +
               `*Name*: ${name} (${alertTargetType})\n` +
@@ -88,15 +90,20 @@ app.post('/alert', async (req, res) => {
       type: type
     };
     console.log(JSON.stringify(logData));
+  } else {
+    message = messageResult.message;
+    // Template's disable_notification overrides query string parameter
+    finalDisableNotification = messageResult.disable_notification;
   }
 
+  // https://core.telegram.org/bots/api#sendmessage
   try {
     const telegramPayload = {
       chat_id,
       text: message,
       link_preview_options: {is_disabled: true},
       parse_mode: 'Markdown',
-      disable_notification: disableNotification,
+      disable_notification: finalDisableNotification,
       ...(message_thread_id && { message_thread_id })
     };
     

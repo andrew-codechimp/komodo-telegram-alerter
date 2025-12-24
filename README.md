@@ -50,11 +50,19 @@ To customize notification messages:
 {
   "StackAutoUpdated": {
     "OK": "Stack {name} on server {servername} updated image {images}",
-    "INFO": "Updating stack {name} on server {servername}",
-    "ERROR": "Error updating stack {name} on server {servername}"
+    "INFO": {
+      "template": "ℹ️ Updating images {images} stack {name} on server {server_name}",
+      "disable_notification": true
+    },
+    "ERROR": {
+      "template": "🚨 Error updating images {images} stack {name} on server {server_name}",
+      "disable_notification": false
+    }
   }
 }
 ```
+
+If a simple status template is used it will use the default to the disable_notification query string parameter (default false)
 
 2. Mount the directory as shown in compose example
 

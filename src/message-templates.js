@@ -51,16 +51,29 @@ function formatTemplate(template, data) {
  * @param {string} type - Alert type (e.g. 'StackAutoUpdated')
  * @param {string} status - Alert status (e.g. 'OK')
  * @param {object} data - Alert data
- * @returns {string|null} Formatted message or null if template not found
+ * @returns {{message: string, disable_notification: boolean}|null} Formatted message and notification setting, or null if template not found
  */
 export function getMessage(type, status, data) {
   try {
-    const template = templates[type]?.[status];
-    if (!template) {
+    const templateConfig = templates[type]?.[status];
+    if (!templateConfig) {
       console.warn(`[WARN] No template found for type: ${type}, status: ${status}`);
       return null;
     }
-    return formatTemplate(template, data);
+    
+    // Support both old string format and new object format
+    if (typeof templateConfig === 'string') {
+      return {
+        message: formatTemplate(templateConfig, data),
+        disable_notification: false
+      };
+    }
+    
+    // New object format with template and disable_notification
+    return {
+      message: formatTemplate(templateConfig.template, data),
+      disable_notification: templateConfig.disable_notification ?? false
+    };
   } catch (err) {
     console.error(`[ERROR] Failed to generate message: ${err.message}`);
     return null;

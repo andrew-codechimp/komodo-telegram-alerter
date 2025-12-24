@@ -1,19 +1,39 @@
 {
   "StackImageUpdateAvailable": {
-    "OK": "ℹ️ New image {image} available for stack {name} on server {server_name}"
+    "OK":
+    {
+      "template": "ℹ️ New image {image} available for stack {name} on server {server_name}",
+      "disable_notification": true
+    }
   },
   "StackAutoUpdated": {
     "OK": "✅ Stack {name} on server {server_name} updated images {images}",
-    "INFO": "ℹ️ Updating images {images} stack {name} on server {server_name}",
-    "ERROR": "🚨 Error updating images {images} stack {name} on server {server_name}"
+    "INFO":
+    {
+      "template": "ℹ️ Updating images {images} stack {name} on server {server_name}",
+      "disable_notification": true
+    },
+    "ERROR": {
+      "template": "🚨 Error updating images {images} stack {name} on server {server_name}",
+      "disable_notification": false
+    }
   },
   "ServerUnreachable": {
-    "CRITICAL": "🔴 Server {name} unreachable: {error}",
+    "CRITICAL": {
+      "template": "🔴 Server {name} unreachable: {error}",
+      "disable_notification": false
+    },
     "OK": "🟢 Server {name} back online"
   },
   "Custom": {
     "OK": "✅ {message}",
-    "WARNING": "⚠️ {message}",
-    "CRITICAL": "🔴 {message}"
+    "WARNING": {
+      "template": "⚠️ {message}",
+      "disable_notification": false
+    },
+    "CRITICAL": {
+      "template": "🔴 {message}",
+      "disable_notification": false
+    }
   }
 }
