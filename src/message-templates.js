@@ -22,7 +22,7 @@ try {
 function formatTemplate(template, data) {
   const missingFields = [];
   const result = template.replace(/\{(\w+)\}/g, (match, key) => {
-    // Проверяем сначала прямое совпадение, затем ищем вложенные свойства
+    // We first check for a direct match, then look for nested properties
     let value = data[key];
     if (value === undefined && data.err && data.err[key] !== undefined) {
       value = data.err[key];

@@ -6,11 +6,11 @@ import { getMessage } from './message-templates.js';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Настройки логирования
+// Logging settings
 const LOG_LEVEL = process.env.LOG_LEVEL || 'info';
 const MESSAGE_LOG = process.env.MESSAGE_LOG === 'true';
 
-// Middleware для логирования входящих запросов
+// Middleware to log incoming requests
 app.use((req, res, next) => {
   if (MESSAGE_LOG) {
     const logData = {
