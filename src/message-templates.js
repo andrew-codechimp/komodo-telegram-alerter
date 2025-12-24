@@ -32,7 +32,7 @@ function formatTemplate(template, data) {
       missingFields.push(key);
       return match;
     }
-    // Округляем числовые значения до 2 знаков после запятой
+    // Round off numerical values ​​to 2 decimal places
     if (typeof value === 'number') {
       return parseFloat(value.toFixed(2));
     }
